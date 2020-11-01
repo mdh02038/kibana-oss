@@ -6,7 +6,7 @@ ARCH ?= ???
 ALL_ARCH ?= arm64 amd64
 DOCKER_IMAGE ?= raquette/kibana-oss
 VERSION = "7.9.3"
-TAG ?= ${VERSION}-v1
+TAG ?= ${VERSION}
 REPOSITORY_GENERIC = ${DOCKER_IMAGE}:${TAG}
 REPOSITORY_ARCH = ${DOCKER_IMAGE}:${TAG}-${ARCH}
 ifeq ($(ARCH),arm64)
