@@ -4,7 +4,14 @@ Mixed architecture kibana image
 
 
 ```
-docker run --rm -it -v DIRECTORY_OF_CONFIG:/kibana/config/ raquette.com/kibana:7.9.3
+docker \
+    --name kibana_dev \
+    -d \
+    -e KIBANA_HOST=0.0.0.0 \
+    -e ES_URL=http://elasticsearch:9200 \
+    -p 5601:5601 \
+    raquette/kibana-oss:7.9.3
+
 ```
 
 
