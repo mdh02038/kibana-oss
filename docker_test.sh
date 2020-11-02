@@ -13,9 +13,9 @@ docker run \
 docker run \
     --name kibana_dev \
     -d \
-    -e KIBANA_HOST=0.0.0.0 \
-    -e ES_URL=http://elasticsearch:9200 \
     -p 5601:5601 \
+    -e SERVER_HOST="0.0.0.0" \
+    -e ELASTICSEARCH_HOSTS="http://elasticsearch:9200" \
     --link es_dev:elasticsearch \
     raquette/kibana-oss:7.9.3
 

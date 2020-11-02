@@ -15,10 +15,10 @@ else
 KIBANA_ARCH=x86_64
 endif
 
-default: binary-images
+default: release-all
 
 binary-image: 
-	docker buildx build --pull --platform ${OS}/${ARCH} -t "${REPOSITORY_ARCH}"  --build-arg VERSION=${VERSION} --build-arg KIBANA_ARCH=${KIBANA_ARCH} -f Dockerfile . 
+	docker buildx build  --pull --platform ${OS}/${ARCH} -t "${REPOSITORY_ARCH}"  --build-arg VERSION=${VERSION} --build-arg KIBANA_ARCH=${KIBANA_ARCH} -f Dockerfile . 
 
 binary-images:
 	(set -e ; $(foreach arch,$(ALL_ARCH), \

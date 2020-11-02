@@ -14,14 +14,11 @@ RUN ln -s /opt/kibana-$VERSION-linux-$KIBANA_ARCH /opt/kibana
 RUN chown -R kibana:kibana /opt/kibana  /opt/kibana-$VERSION-linux-$KIBANA_ARCH
 
 
+COPY kibana-docker /usr/bin
 COPY docker-entrypoint.sh /usr/bin
-RUN ln -s /opt/kibana/bin/kibana /usr/bin
-#RUN ln -s /usr/local/bin/docker-entrypoint.sh
-COPY kibana.yaml /kibana/config/
 WORKDIR /opt/kibana
-VOLUME /kibana/config
 EXPOSE 5601
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["kibana", "-c", "/kibana/config/kibana.yaml"]
+CMD ["kibana-docker"]
 
