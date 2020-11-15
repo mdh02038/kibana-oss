@@ -1,5 +1,6 @@
 .PHONY: default build auto-build-and-push
 
+
 PLATFORMS ?= linux/amd64,linux/arm64
 DOCKER_IMAGE ?= raquette/kibana-oss
 VERSION ?= "edge"
