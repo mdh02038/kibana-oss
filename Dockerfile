@@ -6,12 +6,13 @@ RUN apt-get update && apt-get install -y \
 
 RUN chmod 777 /opt
 RUN groupadd -g 1000 kibana && useradd kibana -u 1000 -g 1000
-ARG VERSION=7.9.3
+ARG VERSION=edge
+ARG KIBANA_VERSION=7.9.3
 ARG TARGETPLATFORM
-RUN wget  https://artifacts.elastic.co/downloads/kibana/kibana-oss-$VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/").tar.gz
-RUN tar -xf kibana-oss-$VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/").tar.gz -C /opt
-RUN ln -s /opt/kibana-$VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/") /opt/kibana
-RUN chown -R kibana:kibana /opt/kibana  /opt/kibana-$VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/")
+RUN wget  https://artifacts.elastic.co/downloads/kibana/kibana-oss-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/").tar.gz
+RUN tar -xf kibana-oss-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/").tar.gz -C /opt
+RUN ln -s /opt/kibana-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/") /opt/kibana
+RUN chown -R kibana:kibana /opt/kibana  /opt/kibana-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/")
 
 
 COPY kibana-docker /usr/bin
