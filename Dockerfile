@@ -11,7 +11,7 @@ ARG KIBANA_VERSION=7.9.3
 ARG TARGETPLATFORM
 RUN wget  https://artifacts.elastic.co/downloads/kibana/kibana-oss-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/").tar.gz
 RUN tar -xf kibana-oss-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/").tar.gz -C /opt
-RUN ln -s /opt/kibana-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/") /opt/kibana
+RUN ln -s /opt/kibana-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/" ) /opt/kibana
 RUN chown -R kibana:kibana /opt/kibana  /opt/kibana-$KIBANA_VERSION-linux-$(echo $TARGETPLATFORM|cut -d/ -f2|sed -e "s/arm64/aarch64/"|sed -e "s/amd64/x86_64/")
 
 
